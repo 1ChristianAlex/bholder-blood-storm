@@ -1,10 +1,10 @@
 const express = require('express');
-const envolvriment = require('./local');
+const envolvriment = require('./config/local');
 const Routes = require('./router');
 const mongoose = require('mongoose');
 const app = express();
 
-mongoose.connect(`mongodb://${envolvriment.HOSTNAME}:${envolvriment.MONGOPORT}/lugia`, {
+mongoose.connect(`mongodb://${envolvriment.HOSTNAME}:${envolvriment.MONGOPORT}/${envolvriment.DB_NAME}`, {
   useNewUrlParser: true,
   user: envolvriment.DB_USER,
   pass: envolvriment.DB_PW

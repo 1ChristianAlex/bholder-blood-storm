@@ -14,4 +14,5 @@ Routes.post('/user', async (req, res, next) => {
   res.json(userStatus);
   next();
 });
+
 module.exports = Routes;
