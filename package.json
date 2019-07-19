@@ -13,6 +13,7 @@
   "dependencies": {
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.5",
     "next": "^9.0.2",
     "react": "^16.8.6",
