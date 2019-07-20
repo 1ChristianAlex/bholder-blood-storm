@@ -1,18 +1,6 @@
-const express = require('express');
-const envolvriment = require('./config/local');
-const Routes = require('./router');
-const mongoose = require('mongoose');
-const app = express();
+const app = require('./server/serve');
+const { BACK_END_PORT, HOSTNAME } = require('./config/local');
 
-mongoose.connect(`mongodb://${envolvriment.HOSTNAME}:${envolvriment.MONGOPORT}/${envolvriment.DB_NAME}`, {
-  useNewUrlParser: true,
-  user: envolvriment.DB_USER,
-  pass: envolvriment.DB_PW
-});
-
-app.use(express.json());
-app.use(Routes);
-
-app.listen(envolvriment.BACK_END_PORT, envolvriment.HOSTNAME, () => {
-  console.log(`http://${envolvriment.HOSTNAME}:${envolvriment.BACK_END_PORT}`, 'connect');
+app.listen(BACK_END_PORT, HOSTNAME, () => {
+  console.log(`http://${HOSTNAME}:${BACK_END_PORT}`, 'connect');
 });
