@@ -1,47 +1,35 @@
+import { IUser, IUserToken } from '../@types/IUser';
 import userModel from '../models/users';
 import crypto from 'crypto';
 import envolvriment from '../config/local';
-class UserController {
+
+export default class UserController {
   private userModel = userModel;
   private SECRET = envolvriment.SECRET;
   private crypto = crypto;
 
-  async cryptoPass(pass) {
+  private async cryptoPass(pass) {
     return this.crypto.scryptSync(pass, this.SECRET, 32);
   }
-  async getAllUser() {
+  public async getAllUser() {
     let allUser = await this.userModel.find();
     return allUser;
   }
-  async newUser(userData) {
-    console.log('teste');
-    let { pass } = userData;
-    let cryptoPass = this.cryptoPass(pass);
-    let userCreate = await this.userModel.create({ ...userData, pass: cryptoPass });
-
-    return userCreate;
-  }
-  async login(user) {
-    let userMatch = await this.userModel.findOne({
-      ...user
-    });
-  }
-  async routeCreateUser(req, res, next) {
+  public async newUser(userData: IUser) {
     try {
-      let user = { ...req.body };
-      console.log(req.body);
-      let userStatus = await this.newUser(user);
+      console.log(userData);
+      let { pass } = userData;
+      let cryptoPass = await this.cryptoPass(pass);
+      let userCreate = await this.userModel.create({ ...userData, pass: cryptoPass.toString(), createDate: new Date().getDate() });
 
-      res.json({ mensage: 'User created sucess', userData: userStatus });
-      next();
+      return userCreate;
     } catch (error) {
       console.log(error);
     }
   }
-  async routeGetAll(req, res, next) {
-    let allUser = await this.getAllUser();
-    res.json(allUser);
-    next();
+  public async login(user: IUser) {
+    let userMatch = await this.userModel.findOne({
+      ...user
+    });
   }
 }
-export default new UserController();
