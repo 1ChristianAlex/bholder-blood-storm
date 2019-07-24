@@ -1,5 +1,6 @@
 const express = require('express');
 const envolvriment = require('../config/local');
+const bodyParser = require('body-parser');
 const Routes = require('./router');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -18,9 +19,10 @@ class Server {
     });
   }
   midllewere() {
-    this.express.use(Routes);
     this.express.use(express.json());
+    this.express.use(bodyParser.json());
     this.express.use(cors());
+    this.express.use(Routes);
   }
 }
 

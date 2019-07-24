@@ -8,7 +8,7 @@ const userModel = new Schema({
   email: String,
   tel: String,
   birthday: String,
-  createDate: { type: Date, date: Date.now() }
+  createDate: { type: Date, date: Date() }
 });
 
 module.exports = mongoose.model('user', userModel);
