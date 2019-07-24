@@ -1,12 +1,11 @@
-const jwt = require('jsonwebtoken');
-const { SECRET } = require('../config/local');
+import jwt from 'jsonwebtoken';
+import envolvriment from '../config/local';
+const { SECRET } = envolvriment;
 
 class WebToken {
-  constructor() {
-    this.jwt = jwt;
-    this.SECRET = SECRET;
-    console.log(this.SECRET);
-  }
+  private jwt = jwt;
+  private SECRET = SECRET;
+
   async createToken(user) {
     let token = this.jwt.sign({ user }, this.SECRET, {
       expiresIn: 3000

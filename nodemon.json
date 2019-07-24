@@ -1,0 +1,7 @@
+{
+  "watch": ["backend"],
+  "ext": "ts",
+  "execMap": {
+    "ts": "sucrase-node backend/app.ts"
+  }
+}

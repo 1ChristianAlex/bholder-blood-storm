@@ -1,13 +1,11 @@
-const userModel = require('../models/users');
-const crypto = require('crypto');
-const { SECRET } = require('../config/local');
-
+import userModel from '../models/users';
+import crypto from 'crypto';
+import envolvriment from '../config/local';
 class UserController {
-  constructor() {
-    this.userModel = userModel;
-    this.SECRET = SECRET;
-    this.crypto = crypto;
-  }
+  private userModel = userModel;
+  private SECRET = envolvriment.SECRET;
+  private crypto = crypto;
+
   async cryptoPass(pass) {
     return this.crypto.scryptSync(pass, this.SECRET, 32);
   }
@@ -46,4 +44,4 @@ class UserController {
     next();
   }
 }
-module.exports = new UserController();
+export default new UserController();

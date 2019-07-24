@@ -1,4 +1,6 @@
-require('dotenv').config({ path: 'backend/config/.env' });
+import { config } from 'dotenv';
+
+config({ path: 'backend/config/.env' });
 
 const envolvriment = {
   MONGOPORT: process.env.DB_PORT,
@@ -11,4 +13,4 @@ const envolvriment = {
   SECRET: process.env.SECRET_TOKEN
 };
 
-module.exports = envolvriment;
+export default envolvriment;
