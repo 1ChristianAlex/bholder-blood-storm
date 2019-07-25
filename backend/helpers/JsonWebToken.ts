@@ -10,6 +10,7 @@ class WebToken {
     let token = this.jwt.sign({ user }, this.SECRET, {
       expiresIn: 3000
     });
+    console.log(token);
     return token;
   }
   async verifyToken(token) {
@@ -20,4 +21,4 @@ class WebToken {
   }
 }
 
-module.exports = new WebToken();
+export default new WebToken();

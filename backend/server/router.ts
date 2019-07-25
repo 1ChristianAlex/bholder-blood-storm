@@ -6,8 +6,12 @@ Routes.get('/', (req, res, next) => {
   res.json({ mensage: 'Hello world' });
 });
 
-Routes.get('/user', userRouter.routeGetAll);
-
-Routes.post('/user', userRouter.routeCreateUser);
+Routes.route('/user')
+  .get((req, res, next) => {
+    userRouter.routeGetAll(req, res, next);
+  })
+  .post((req, res, next) => {
+    userRouter.routeCreateUser(req, res, next);
+  });
 
 export default Routes;
