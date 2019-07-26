@@ -1,12 +1,10 @@
 import { IUser, IUserToken, ILogin } from '../@types/IUser';
 import userModel from '../models/users';
 import Cryptfy from '../helpers/Crypto';
-import Token from '../helpers/JsonWebToken';
 
 export default class UserController {
   private userModel = userModel;
   private Crypt = Cryptfy;
-  private jwt = Token;
 
   public async getAllUser() {
     let allUser = await this.userModel.find();
@@ -53,11 +51,12 @@ export default class UserController {
     }
   }
   public async updateUser(user: IUserToken) {
-    let veriryToken = await this.jwt.verifyToken(user.token);
-    if (typeof veriryToken != 'string' || typeof veriryToken != 'object') return;
-
     let updateUser = await this.userModel.findByIdAndUpdate(user.myUser._id, { ...user.myUser });
     console.log(updateUser);
     return updateUser;
+  }
+  public async deleteUser(_id) {
+    let userDeleted = await this.userModel.findOneAndDelete({ _id });
+    return userDeleted;
   }
 }

@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import Routes from './router';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import jwtMiddleware from "../routes/jwtMiddleware";
 
 class Server {
   constructor() {
@@ -24,6 +25,7 @@ class Server {
     this.express.use(express.json());
     this.express.use(bodyParser.json());
     this.express.use(cors());
+    this.express.all('/api',jwtMiddleware)
     this.express.use(Routes);
   }
 }

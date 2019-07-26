@@ -25,7 +25,7 @@ class WebToken {
       let tokenV = this.jwt.verify(token, Buffer.from(this.SECRET).toString('hex'));
       return tokenV;
     } catch (error) {
-      console.log(error);
+      return null
     }
   }
 }
