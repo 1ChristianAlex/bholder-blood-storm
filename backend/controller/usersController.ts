@@ -19,7 +19,7 @@ export default class UserController {
       let userCreate = await this.userModel.create({ ...userData, pass: cryptoPass.toString(), createDate: Date.now() });
       return userCreate;
     } catch (error) {
-      console.log(error);
+      return null;
     }
   }
   public async login(user: ILogin) {
@@ -50,9 +50,8 @@ export default class UserController {
       console.log(error);
     }
   }
-  public async updateUser(user: IUserToken) {
-    let updateUser = await this.userModel.findByIdAndUpdate(user.token._id, { ...user.token });
-    console.log(updateUser);
+  public async updateUser(user: IUser, newUser: IUser) {
+    let updateUser = await this.userModel.findByIdAndUpdate(user._id, { ...user, ...newUser });
     return updateUser;
   }
   public async deleteUser(_id) {

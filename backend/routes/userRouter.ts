@@ -2,6 +2,7 @@ import { IUser, ILogin, IUserToken } from '../@types/IUser';
 import { NextFunction, Request, Response } from 'express';
 import UserController from '../controller/usersController';
 import Token from '../helpers/JsonWebToken';
+import bodyParser = require('body-parser');
 
 export default class UserRouter {
   private UserC: UserController;
@@ -14,7 +15,11 @@ export default class UserRouter {
     try {
       let user: IUser = req.body;
       let userResult = await this.UserC.newUser(user);
-      res.json({ mensage: 'User created sucess', userResult: userResult });
+      if (userResult !== null) {
+        res.json({ mensage: 'User created sucess', userResult: userResult });
+      } else {
+        res.json({ mensage: 'Erro on user creation' });
+      }
       next();
     } catch (error) {
       console.log(error);
@@ -36,15 +41,16 @@ export default class UserRouter {
     next();
   }
   public async routeUpdateUser(req: Request, res: Response, next: NextFunction) {
-    let userToken: IUserToken = req.body.user;
+    let userToken: IUser = req.body.user;
 
-    let result = await this.UserC.updateUser(userToken);
+    let newUser = req.body.newUser;
+    let result = await this.UserC.updateUser(userToken, newUser);
     res.json(result);
     next();
   }
   public async routeDeleteUser(req: Request, res: Response, next: NextFunction) {
-    let userToken: IUserToken = req.body.user;
-    let result = await this.UserC.deleteUser(userToken.token);
+    let userId = req.params.id;
+    let result = await this.UserC.deleteUser(userId);
     res.json(result);
     next();
   }
