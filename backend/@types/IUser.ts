@@ -9,12 +9,9 @@ export interface IUser {
   birthday?: string;
   createDate?: string;
 }
-export interface ITokenAuth {
-  token: string;
-}
+
 export interface IUserToken {
-  myUser: IUser;
-  token: ITokenAuth;
+  token: IUser;
 }
 export interface ILogin {
   userName: string;

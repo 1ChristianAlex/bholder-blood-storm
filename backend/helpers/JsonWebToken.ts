@@ -8,12 +8,9 @@ class WebToken {
   private SECRET = SECRET;
 
   async createToken(user: IUser) {
-    let { _id, userName, pass, email } = user;
+    delete user.pass;
     let userToken = {
-      _id,
-      userName,
-      pass,
-      email
+      ...user
     };
     let token = this.jwt.sign({ ...userToken }, Buffer.from(this.SECRET).toString('hex'), {
       expiresIn: 3000
@@ -25,7 +22,7 @@ class WebToken {
       let tokenV = this.jwt.verify(token, Buffer.from(this.SECRET).toString('hex'));
       return tokenV;
     } catch (error) {
-      return null
+      return null;
     }
   }
 }

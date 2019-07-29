@@ -3,7 +3,6 @@ import { NextFunction, Request, Response } from 'express';
 import UserController from '../controller/usersController';
 import Token from '../helpers/JsonWebToken';
 
-
 export default class UserRouter {
   private UserC: UserController;
   private jwt = Token;
@@ -37,16 +36,15 @@ export default class UserRouter {
     next();
   }
   public async routeUpdateUser(req: Request, res: Response, next: NextFunction) {
-    
-    let userToken:IUserToken = req.body;
-    let veriryToken = await this.jwt.verifyToken(userToken.token);
+    let userToken: IUserToken = req.body.user;
+
     let result = await this.UserC.updateUser(userToken);
     res.json(result);
     next();
   }
   public async routeDeleteUser(req: Request, res: Response, next: NextFunction) {
-    let userToken = req.body;
-    
+    let userToken: IUserToken = req.body.user;
+    let result = await this.UserC.deleteUser(userToken.token);
     res.json(result);
     next();
   }

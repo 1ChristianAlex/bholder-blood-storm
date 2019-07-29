@@ -1,11 +1,12 @@
 import { IUser, IUserToken, ILogin } from '../@types/IUser';
 import userModel from '../models/users';
 import Cryptfy from '../helpers/Crypto';
+import jwt from '../helpers/JsonWebToken';
 
 export default class UserController {
   private userModel = userModel;
   private Crypt = Cryptfy;
-
+  private jwt = jwt;
   public async getAllUser() {
     let allUser = await this.userModel.find();
     return allUser;
@@ -41,8 +42,7 @@ export default class UserController {
         };
         let token = await this.jwt.createToken(myUser);
         return {
-          token,
-          myUser
+          token
         };
       }
       return userLogin;
@@ -51,7 +51,7 @@ export default class UserController {
     }
   }
   public async updateUser(user: IUserToken) {
-    let updateUser = await this.userModel.findByIdAndUpdate(user.myUser._id, { ...user.myUser });
+    let updateUser = await this.userModel.findByIdAndUpdate(user.token._id, { ...user.token });
     console.log(updateUser);
     return updateUser;
   }
