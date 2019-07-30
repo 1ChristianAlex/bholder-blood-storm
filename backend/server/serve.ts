@@ -8,7 +8,6 @@ import jwtMiddleware from '../routes/jwtMiddleware';
 
 class Server {
   constructor() {
-    this.express = express();
     this.midllewere();
     this.dataBase();
   }
@@ -22,9 +21,11 @@ class Server {
     });
   }
   private midllewere() {
-    this.express.use(bodyParser.json());
+    Routes.use(bodyParser.json());
+    Routes.use(express.json());
+    Routes.use(bodyParser.urlencoded({ extended: true }));
     this.express.use(cors());
-    this.express.use('/api/', jwtMiddleware);
+    //this.express.use('/api', jwtMiddleware);
     this.express.use(Routes);
   }
 }

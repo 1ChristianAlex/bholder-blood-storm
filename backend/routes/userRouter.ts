@@ -1,12 +1,9 @@
-import { IUser, ILogin, IUserToken } from '../@types/IUser';
+import { IUser, ILogin } from '../@types/IUser';
 import { NextFunction, Request, Response } from 'express';
 import UserController from '../controller/usersController';
-import Token from '../helpers/JsonWebToken';
-import bodyParser = require('body-parser');
 
 export default class UserRouter {
   private UserC: UserController;
-  private jwt = Token;
 
   constructor() {
     this.UserC = new UserController();
@@ -42,10 +39,10 @@ export default class UserRouter {
   }
   public async routeUpdateUser(req: Request, res: Response, next: NextFunction) {
     let userToken: IUser = req.body.user;
+    // let newUser = req.body.newUser;
+    // let result = await this.UserC.updateUser(userToken, newUser);
+    res.json(req.body);
 
-    let newUser = req.body.newUser;
-    let result = await this.UserC.updateUser(userToken, newUser);
-    res.json(result);
     next();
   }
   public async routeDeleteUser(req: Request, res: Response, next: NextFunction) {

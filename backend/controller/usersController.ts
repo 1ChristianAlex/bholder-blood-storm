@@ -7,10 +7,12 @@ export default class UserController {
   private userModel = userModel;
   private Crypt = Cryptfy;
   private jwt = jwt;
+
   public async getAllUser() {
     let allUser = await this.userModel.find();
     return allUser;
   }
+
   public async newUser(userData: IUser) {
     try {
       let { pass } = userData;
@@ -51,8 +53,12 @@ export default class UserController {
     }
   }
   public async updateUser(user: IUser, newUser: IUser) {
-    let updateUser = await this.userModel.findByIdAndUpdate(user._id, { ...user, ...newUser });
-    return updateUser;
+    try {
+      let updateUser = await this.userModel.findByIdAndUpdate(user._id, { ...user, ...newUser });
+      return updateUser;
+    } catch (error) {
+      console.log(error);
+    }
   }
   public async deleteUser(_id) {
     let userDeleted = await this.userModel.findOneAndDelete({ _id });
