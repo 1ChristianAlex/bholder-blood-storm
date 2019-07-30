@@ -7,11 +7,12 @@ import cors from 'cors';
 import jwtMiddleware from '../routes/jwtMiddleware';
 
 class Server {
+  public express: express.Application;
   constructor() {
+    this.express = express();
     this.midllewere();
     this.dataBase();
   }
-  public express = express();
 
   private dataBase() {
     mongoose.connect(`mongodb://${envolvriment.HOSTNAME}:${envolvriment.MONGOPORT}/${envolvriment.DB_NAME}`, {
@@ -21,11 +22,10 @@ class Server {
     });
   }
   private midllewere() {
-    Routes.use(bodyParser.json());
-    Routes.use(express.json());
-    Routes.use(bodyParser.urlencoded({ extended: true }));
+    this.express.use(bodyParser.urlencoded({ extended: true }));
+    this.express.use(bodyParser.json());
     this.express.use(cors());
-    //this.express.use('/api', jwtMiddleware);
+    this.express.use('/api/', jwtMiddleware);
     this.express.use(Routes);
   }
 }

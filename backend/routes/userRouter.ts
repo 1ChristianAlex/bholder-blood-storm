@@ -39,10 +39,9 @@ export default class UserRouter {
   }
   public async routeUpdateUser(req: Request, res: Response, next: NextFunction) {
     let userToken: IUser = req.body.user;
-    // let newUser = req.body.newUser;
-    // let result = await this.UserC.updateUser(userToken, newUser);
-    res.json(req.body);
-
+    let newUser = req.body.newUser;
+    let result = await this.UserC.updateUser(userToken, newUser);
+    res.json(result);
     next();
   }
   public async routeDeleteUser(req: Request, res: Response, next: NextFunction) {

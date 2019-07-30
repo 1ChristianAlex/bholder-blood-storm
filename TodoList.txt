@@ -1,1 +1,11 @@
-Usuario deve ter o token apagado caso deixe de existir
+User crud logic V
+User token validation V
+
+Postagens 
+
+Regras
+
+Criação de personagem
+
+Salas
+
