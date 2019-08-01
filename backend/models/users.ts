@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-
+import DateNow from '../helpers/Date';
 const userModel = new Schema({
   name: {
     required: true,
@@ -37,8 +37,11 @@ const userModel = new Schema({
     type: String
   },
   createDate: {
-    required: true,
-    minlength: 6,
+    default: DateNow(),
+    type: String
+  },
+  role: {
+    default: 'user',
     type: String
   }
 });
