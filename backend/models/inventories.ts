@@ -1,18 +1,16 @@
 import { Schema, model } from 'mongoose';
 
 const inventorieModel = new Schema({
-  max_size: {
-    type: Number
+  max_weight: {
+    type: Number,
+    default: 50
   },
-  size_current: {
+  current_weight: {
     type: Number
   },
   items_ref: {
-    type: [Number]
-  },
-  game_ref: {
-    type: String
+    type: [String]
   }
 });
 
-export default model('inventorie', inventorieModel);
+export default inventorieModel;

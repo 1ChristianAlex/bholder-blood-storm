@@ -3,12 +3,7 @@ import DateNow from '../helpers/Date';
 const userModel = new Schema({
   name: {
     required: true,
-    minlength: 6,
-    type: String
-  },
-  lastName: {
-    required: true,
-    minlength: 6,
+    minlength: 4,
     type: String
   },
   userName: {
@@ -26,23 +21,23 @@ const userModel = new Schema({
     minlength: 6,
     type: String
   },
-  tel: {
-    required: true,
-    minlength: 9,
-    type: String
-  },
-  birthday: {
-    required: true,
-    minlength: 6,
-    type: String
-  },
   createDate: {
     default: DateNow(),
     type: String
   },
-  role: {
-    default: 'user',
-    type: String
+  guild: {
+    type: String,
+    default: 'No Guild'
+  },
+  rank: {
+    type: String,
+    default: 'No Rank'
+  },
+  playerRef: {
+    type: [String]
+  },
+  masterRef: {
+    type: [String]
   }
 });
 

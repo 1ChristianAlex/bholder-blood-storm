@@ -22,11 +22,14 @@ const lifeStatus = new Schema({
     type: String
   },
   max: {
-    type: Schema.Types.Mixed
+    type: String
   }
 });
-const characterSheetModel = new Schema({
-  characterName: {
+const player = new Schema({
+  _id: {
+    type: String
+  },
+  playerName: {
     required: true,
     type: String,
     minlength: 4
@@ -34,23 +37,30 @@ const characterSheetModel = new Schema({
   class: {
     type: String
   },
-  level: {
-    type: String
-  },
   breed: {
     type: String
   },
-  alignment: {
+  level: {
     type: String
   },
-  experience_points: {
-    type: Number
+  life: {
+    type: lifeStatus
+  },
+
+  attribute: {
+    type: [attributeModel]
   },
   abiliity: {
     type: [abiliityModel]
   },
-  attribute: {
-    type: [attributeModel]
+  alignment: {
+    type: String
+  },
+  background: {
+    type: String
+  },
+  experience_points: {
+    type: Number
   },
   inspiration: {
     type: Number
@@ -64,15 +74,16 @@ const characterSheetModel = new Schema({
   initiative: {
     type: Number
   },
-  life: {
-    type: lifeStatus
+  playerImage: {
+    type: String
   },
   inventorie_ref: {
-    type: Number
+    type: String
   },
-  userRef: {
-    type: Number
+  accessLevel: {
+    type: String,
+    default: 'Player'
   }
 });
 
-export default model('characterSheetModel', characterSheetModel);
+export default model('player', player);

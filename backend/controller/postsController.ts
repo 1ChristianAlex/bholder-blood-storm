@@ -16,6 +16,14 @@ class PostController {
     const listPost = await this.postM.find();
     return listPost;
   }
+  public async updatePost(_id, post) {
+    const update = await this.postM.findByIdAndUpdate(_id, { ...post });
+    return update;
+  }
+  public async deletePost(_id) {
+    const deleteResult = await this.postM.findByIdAndDelete(_id);
+    return deleteResult;
+  }
 }
 
 export default new PostController();

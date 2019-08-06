@@ -39,7 +39,6 @@ export default class UserController {
           _id: fullUserData._id,
           userName: fullUserData.userName,
           name: fullUserData.name,
-          lastName: fullUserData.lastName,
           email: fullUserData.email
         };
         let token = await this.jwt.createToken(myUser);
@@ -62,6 +61,6 @@ export default class UserController {
   }
   public async deleteUser(_id) {
     let userDeleted = await this.userModel.findOneAndDelete({ _id });
-    return userDeleted;
+    return { mensage: `Usuário ${userDeleted._id} deletado`, status: 'Success' };
   }
 }

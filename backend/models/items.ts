@@ -1,10 +1,11 @@
 import { Schema, model } from 'mongoose';
+import Date from '../helpers/Date';
 const atributesItem = new Schema({
-  name: {
-    type: String
-  },
   value: {
     type: String
+  },
+  weight: {
+    type: Number
   }
 });
 const itemModel = new Schema({
@@ -27,12 +28,12 @@ const itemModel = new Schema({
     type: [atributesItem],
     required: true
   },
-  game_ref: {
-    type: Number,
-    required: true
+  creation_date: {
+    type: String,
+    default: Date()
   },
   user_ref: {
-    type: Number,
+    type: String,
     required: true
   }
 });

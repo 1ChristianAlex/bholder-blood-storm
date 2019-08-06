@@ -17,4 +17,16 @@ export default class PostRouter {
     res.json(postResult);
     next();
   }
+  public async updatePostRouter(req: Request, res: Response, next: NextFunction) {
+    let { _id, post } = req.body.post;
+    let postResult = await this.postC.updatePost(_id, post);
+    res.json(postResult);
+    next();
+  }
+  public async deletePostRouter(req: Request, res: Response, next: NextFunction) {
+    let { _id } = req.body.post;
+    let postResult = await this.postC.deletePost(_id);
+    res.json(postResult);
+    next();
+  }
 }
