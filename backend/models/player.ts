@@ -26,9 +26,6 @@ const lifeStatus = new Schema({
   }
 });
 const player = new Schema({
-  _id: {
-    type: String
-  },
   playerName: {
     required: true,
     type: String,
@@ -57,7 +54,7 @@ const player = new Schema({
     type: String
   },
   background: {
-    type: String
+    type: [String]
   },
   experience_points: {
     type: Number

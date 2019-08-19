@@ -18,7 +18,7 @@ export default class PlayerController {
     const playerCreating = await this.playerModel.create(playerBuild);
 
     let playerRef = user.playerRef;
-    if (playerRef.length < 1) {
+    if (playerRef == undefined) {
       playerRef = [];
     }
     playerRef.push(playerCreating.id);
@@ -29,6 +29,16 @@ export default class PlayerController {
     this.userController.updateUser(user, userInventorie);
 
     return playerCreating;
+  }
+  public async findPlayer(_id) {
+    let player: any = await this.playerModel.findById(_id);
+    let playerInventorie = await this.playerInventorie.findInventorie(player.inventorie_ref);
+    let playerFind = {
+      player,
+      playerInventorie
+    };
+    console.log(playerFind);
+    return playerFind;
   }
   public async updatePlayer(_id, player: IPlayer) {
     await this.playerModel.findOneAndUpdate({ _id }, player);

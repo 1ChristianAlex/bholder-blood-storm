@@ -12,8 +12,8 @@ class PostController {
     const postResult = await this.postM.create(postComplete);
     return postResult;
   }
-  public async listPost() {
-    const listPost = await this.postM.find();
+  public async listPost(limit = 10) {
+    const listPost = await this.postM.find().limit(limit);
     return listPost;
   }
   public async updatePost(_id, post) {

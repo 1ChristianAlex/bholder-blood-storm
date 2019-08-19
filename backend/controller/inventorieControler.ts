@@ -19,6 +19,10 @@ export default class InventorieController {
     const update = await this.inventorieModel.findByIdAndUpdate(_id, { ...Inventorie });
     return update;
   }
+  public async findInventorie(_id) {
+    const findResult = await this.inventorieModel.findById(_id);
+    return findResult;
+  }
   public async deleteInventorie(_id) {
     const deleteResult = await this.inventorieModel.findByIdAndDelete(_id);
     return deleteResult;

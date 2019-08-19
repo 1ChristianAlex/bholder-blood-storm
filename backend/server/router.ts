@@ -37,9 +37,14 @@ Routes.route('/api/post')
   .delete(async (req, res, next) => {
     await postRouter.deletePostRouter(req, res, next);
   });
-
+Routes.route('/post').get(async (req, res, next) => {
+  await postRouter.listPostRouter(req, res, next);
+});
 // Rotas para Player
-Routes.route('/api/player')
+Routes.route('/api/player/:id?')
+  .get(async (req, res, next) => {
+    await playerRouter.findPlayerRouter(req, res, next);
+  })
   .post(async (req, res, next) => {
     await playerRouter.createPlayerRouter(req, res, next);
   })

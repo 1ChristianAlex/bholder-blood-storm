@@ -13,7 +13,8 @@ export default class PostRouter {
     next();
   }
   public async listPostRouter(req: Request, res: Response, next: NextFunction) {
-    let postResult = await this.postC.listPost();
+    let { limit } = req.body;
+    let postResult = await this.postC.listPost(limit);
     res.json(postResult);
     next();
   }
