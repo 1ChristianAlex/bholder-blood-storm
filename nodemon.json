@@ -1,7 +1,7 @@
 {
-  "watch": ["backend"],
+  "watch": ["./backend"],
   "ext": "ts",
   "execMap": {
-    "ts": "sucrase-node backend/app.ts"
+    "ts": "sucrase-node ./app.ts"
   }
 }
