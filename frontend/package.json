@@ -5,18 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
-    "dev": " concurrently  \"nodemon ./app.ts\" \"react-scripts start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.0.0",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.6.5",
     "next": "^9.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -24,11 +17,6 @@
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
-    "@types/dotenv": "^6.1.1",
-    "@types/express": "^4.17.0",
-    "@types/jsonwebtoken": "^8.3.2",
-    "@types/mongoose": "^5.5.9",
-    "concurrently": "^4.1.2",
     "nodemon": "^1.19.1",
     "sucrase": "^3.10.1",
     "typescript": "^3.5.3"
