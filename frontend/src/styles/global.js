@@ -1,9 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
-import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const globalStyles = createGlobalStyle`
-
-${bootstrap}
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900&display=swap');
 
