@@ -6,6 +6,7 @@ export const BHeader = {
   header: styled.header`
     width: 100%;
     background-color: black;
+    position: relative;
   `,
   container: styled.div`
     padding: 15px 0;
@@ -55,6 +56,13 @@ export const SocialIcon = {
 export const BNav = {
   section: styled.div`
     background-color: #a70202;
+    @media only screen and (max-width: 991px) {
+      position: absolute;
+      width: 100%;
+      top: ${props => (props.isOpen ? '-200%' : '100%')};
+      transition: 0.5s;
+      z-index: 99;
+    }
   `,
   Nav: styled.nav`
     padding: 5px 0;
@@ -64,6 +72,8 @@ export const BNav = {
     flex-flow: wrap;
     @media only screen and (max-width: 991px) {
       flex-flow: column;
+      transition: 0.5s;
+      overflow: hidden;
     }
   `,
   item: styled.div`
@@ -82,18 +92,36 @@ export const BNav = {
     padding: 5px 15px;
     right: 0;
     left: 0;
+    @media only screen and (max-width: 991px) {
+      position: relative;
+      transition: 0.5s;
+    }
   `,
   dropItem: styled.li`
     padding: 0;
   `,
   dropTitle: styled.a`
     padding: 0;
-  `,
-  toggleMenu: styled(Button)`
-    display: none;
     @media only screen and (max-width: 991px) {
       display: block;
-      position: absolute;
+      padding: 5px 0;
+    }
+  `,
+  toggleMenu: styled.button`
+    display: none;
+    @media only screen and (max-width: 991px) {
+      background-color: #a70202;
+      border: 1px solid white;
+      display: block;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: 13pt;
+      :focus {
+        background-color: white;
+        border: 1px solid #a70202;
+        display: block;
+        color: #a70202;
+      }
     }
   `
 };

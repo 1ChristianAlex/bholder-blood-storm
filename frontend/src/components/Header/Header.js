@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { BHeader, UserAcess, BNav } from './styled';
 import { SocialHeader } from './socialHeader';
 import { BSearch } from '../Search/form';
-import { MdMenu } from 'react-icons/md';
+import { MdMenu, MdArrowDropDown } from 'react-icons/md';
 import logo from '../../assets/logo.png';
 
 export class Header extends Component {
@@ -11,10 +11,12 @@ export class Header extends Component {
     super(props);
 
     this.state = {
-      menuItem: ['Criação', 'Personagens', 'Sem ideia', 'Opção']
+      menuItem: ['Criação', 'Personagens', 'Sem ideia', 'Opção'],
+      menuOpen: true
     };
 
     this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.toggleMobile = this.toggleMobile.bind(this);
   }
   render() {
     return (
@@ -39,25 +41,25 @@ export class Header extends Component {
                 <UserAcess.container>
                   <UserAcess.link to="/login">Login</UserAcess.link>
                   <UserAcess.link to="/register">Registrar</UserAcess.link>
+                  <BNav.toggleMenu onClick={this.toggleMobile}>
+                    <MdMenu />
+                  </BNav.toggleMenu>
                 </UserAcess.container>
               </Col>
             </Row>
           </BHeader.container>
         </Container>
-        <BNav.section>
+        <BNav.section isOpen={this.state.menuOpen}>
           <Container>
             <BNav.Nav>
-              <BNav.toggleMenu>
-                <MdMenu />
-              </BNav.toggleMenu>
-              <BNav.collpase>
+              <BNav.collpase heightMenu={this.state.menuOpen} qnty={this.state.menuItem.length}>
                 {[].map.call([...this.state.menuItem], (item, i) => {
                   return (
                     <BNav.item key={i}>
                       <BNav.dropTitle href="#" data-drop={i} onClick={e => this.toggleDropdown(i, e)}>
-                        {item}
+                        {item} <MdArrowDropDown />
                       </BNav.dropTitle>
-                      <BNav.dropdown data-dropdown={i} data-toggle="close" onMouseLeave={e => this.toggleDropdown(i, e)}>
+                      <BNav.dropdown isOpen={this.state.menuOpen} data-dropdown={i} data-toggle="close" onMouseLeave={e => this.toggleDropdown(i, e)}>
                         <BNav.dropItem>
                           <BNav.link to="/">Teste</BNav.link>
                         </BNav.dropItem>
@@ -88,5 +90,11 @@ export class Header extends Component {
       dropdown.dataset.toggle = 'close';
     }
     e.preventDefault();
+  }
+  toggleMobile() {
+    this.setState({
+      menuOpen: !this.state.menuOpen
+    });
+    console.log(this.state.menuOpen);
   }
 }
