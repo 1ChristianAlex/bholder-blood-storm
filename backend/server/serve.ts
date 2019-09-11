@@ -2,9 +2,9 @@ import express from 'express';
 import envolvriment from '../config/local';
 import bodyParser from 'body-parser';
 import Routes from './router';
-import mongoose from 'mongoose';
 import cors from 'cors';
 import jwtMiddleware from '../routes/jwtMiddleware';
+import { Sequelize } from 'sequelize';
 
 class Server {
   public express: express.Application;
@@ -15,10 +15,14 @@ class Server {
   }
 
   private dataBase() {
-    mongoose.connect(`mongodb://${envolvriment.HOSTNAME}:${envolvriment.MONGOPORT}/${envolvriment.DB_NAME}`, {
-      useNewUrlParser: true,
-      user: envolvriment.DB_USER,
-      pass: envolvriment.DB_PW
+    const sequelize = new Sequelize({
+      dialect: 'mysql',
+      username: envolvriment.DB_USER,
+      password: envolvriment.DB_PW,
+      database: envolvriment.DB_NAME
+    });
+    return sequelize.authenticate().then(() => {
+      console.log('My SQL Connects');
     });
   }
   private midllewere() {

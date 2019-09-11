@@ -1,15 +1,15 @@
 import { IUser, IUserToken, ILogin } from '../@types/IUser';
-import userModel from '../models/users';
+import { User } from '../app/models/user';
 import Cryptfy from '../helpers/Crypto';
 import jwt from '../helpers/JsonWebToken';
 
 export default class UserController {
-  private userModel = userModel;
+  private userModel = User;
   private Crypt = Cryptfy;
   private jwt = jwt;
 
   public async getAllUser() {
-    let allUser = await this.userModel.find();
+    let allUser = await this.userModel.findAll();
     return allUser;
   }
 
@@ -28,13 +28,9 @@ export default class UserController {
     try {
       let { userName, pass, email } = user;
       let cryptPass = await this.Crypt(pass);
-      let userLogin = await this.userModel.findOne({
-        userName,
-        pass: cryptPass,
-        email
-      });
+      let userLogin = await this.userModel.findOne().toJSON();
       if (userLogin !== null) {
-        let fullUserData: IUser = userLogin.toJSON();
+        let fullUserData: any = userLogin;
         let myUser: IUser = {
           _id: fullUserData._id,
           userName: fullUserData.userName,
@@ -53,14 +49,14 @@ export default class UserController {
   }
   public async updateUser(user: IUser, newUser: IUser) {
     try {
-      let updateUser = await this.userModel.findByIdAndUpdate(user._id, { ...user, ...newUser });
+      let updateUser = await this.userModel.findByPk(user._id);
       return updateUser;
     } catch (error) {
       console.log(error);
     }
   }
   public async deleteUser(_id) {
-    let userDeleted = await this.userModel.findOneAndDelete({ _id });
-    return { mensage: `Usuário ${userDeleted._id} deletado`, status: 'Success' };
+    let userDeleted = await this.userModel.findByPk(_id);
+    return { mensage: `Usuário ${userDeleted} deletado`, status: 'Success' };
   }
 }
