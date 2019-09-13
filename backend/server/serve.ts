@@ -1,29 +1,18 @@
 import express from 'express';
-import envolvriment from '../config/local';
 import bodyParser from 'body-parser';
 import Routes from './router';
 import cors from 'cors';
 import jwtMiddleware from '../routes/jwtMiddleware';
-import { Sequelize } from 'sequelize';
+import { sequelize } from '../config/database';
 
 class Server {
   public express: express.Application;
   constructor() {
-    this.express = express();
-    this.midllewere();
-    this.dataBase();
+    this.init();
   }
 
   private dataBase() {
-    const sequelize = new Sequelize({
-      dialect: 'mysql',
-      username: envolvriment.DB_USER,
-      password: envolvriment.DB_PW,
-      database: envolvriment.DB_NAME
-    });
-    return sequelize.authenticate().then(() => {
-      console.log('My SQL Connects');
-    });
+    sequelize.authenticate();
   }
   private midllewere() {
     this.express.use(bodyParser.urlencoded({ extended: true }));
@@ -31,6 +20,11 @@ class Server {
     this.express.use(cors());
     this.express.use('/api/', jwtMiddleware);
     this.express.use(Routes);
+  }
+  private init() {
+    this.dataBase();
+    this.express = express();
+    this.midllewere();
   }
 }
 

@@ -1,4 +1,4 @@
-import postM from '../models/posts';
+// import postM from '../models/posts';
 import { IPost } from '../@types/IPost';
 
 class PostController {

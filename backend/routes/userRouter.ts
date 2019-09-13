@@ -11,7 +11,9 @@ export default class UserRouter {
   public async routeCreateUser(req: Request, res: Response, next: NextFunction) {
     try {
       let user: IUser = req.body;
-      let userResult = await this.UserC.newUser(user);
+      // let userResult = await this.UserC.newUser(user);
+
+      let userResult = await this.UserC.teste(user);
       if (userResult !== null) {
         res.json({ mensage: 'User created sucess', userResult: userResult });
       } else {

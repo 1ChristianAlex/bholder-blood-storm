@@ -1,4 +1,4 @@
-import playerModel from '../models/player';
+// import playerModel from '../models/player';
 import playerInventorie from './inventorieControler';
 import userController from './usersController';
 import { IPlayer } from '../@types/IPlayer';

@@ -1,4 +1,4 @@
-import InventorieSchema from '../models/inventories';
+// import InventorieSchema from '../models/inventories';
 import { IInventorie } from '../@types/IInventorie';
 import { Model, Document, model } from 'mongoose';
 

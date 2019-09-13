@@ -1,5 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
-export class User extends Model {}
+import { sequelize } from '../../config/database';
+
+export class User extends Model<any> {}
+
 User.init(
   {
     id: {
@@ -9,6 +12,14 @@ User.init(
       type: DataTypes.INTEGER
     },
     name: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    lastName: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    userName: {
       allowNull: false,
       type: DataTypes.STRING
     },
@@ -30,5 +41,5 @@ User.init(
       type: DataTypes.DATE
     }
   },
-  sequelize
+  { sequelize, modelName: 'users' }
 );
