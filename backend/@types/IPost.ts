@@ -4,6 +4,5 @@ export interface IPost {
   subtitle: String;
   thumb: String;
   content: Array<string>;
-  creation_date: String;
   userRef: string;
 }

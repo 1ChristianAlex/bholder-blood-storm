@@ -13,7 +13,7 @@ export default class UserRouter {
       let user: IUser = req.body;
       // let userResult = await this.UserC.newUser(user);
 
-      let userResult = await this.UserC.teste(user);
+      let userResult = await this.UserC.newUser(user);
       if (userResult !== null) {
         res.json({ mensage: 'User created sucess', userResult: userResult });
       } else {

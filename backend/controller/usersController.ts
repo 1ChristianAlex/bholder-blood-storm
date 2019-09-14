@@ -1,6 +1,5 @@
 import { IUser, IUserToken, ILogin } from '../@types/IUser';
-import { User } from '../app/models/user';
-import { Teste } from '../app/models/teste';
+import { User } from '../models/user';
 
 import Cryptfy from '../helpers/Crypto';
 import jwt from '../helpers/JsonWebToken';
@@ -13,22 +12,12 @@ export default class UserController {
     let allUser = await User.findAll();
     return allUser;
   }
-  public async teste(userData: IUser) {
-    try {
-      let userCreate = await Teste.findAll().then(item => {
-        console.log(item);
-      });
-      return userCreate;
-    } catch (error) {
-      return null;
-    }
-  }
   public async newUser(userData: IUser) {
     try {
-      let { pass } = userData;
-      let cryptoPass = await this.Crypt(pass);
+      let { password } = userData;
+      let cryptoPass = await this.Crypt(password);
 
-      let userCreate = await User.create({ ...userData, password: cryptoPass.toString(), createdAt: Date.now(), updatedAt: 'Date.now()' });
+      let userCreate = await User.create({ ...userData, password: cryptoPass.toString() });
       return userCreate;
     } catch (error) {
       return null;
@@ -36,13 +25,18 @@ export default class UserController {
   }
   public async login(user: ILogin) {
     try {
-      let { userName, pass, email } = user;
-      let cryptPass = await this.Crypt(pass);
-      let userLogin = await User.findOne().toJSON();
+      let { userName, password, email } = user;
+      let cryptPass = await this.Crypt(password);
+      let userLogin = await User.findOne({
+        where: {
+          userName: userName,
+          password: cryptPass
+        }
+      }).toJSON();
       if (userLogin !== null) {
         let fullUserData: any = userLogin;
         let myUser: IUser = {
-          _id: fullUserData._id,
+          _id: fullUserData.id,
           userName: fullUserData.userName,
           name: fullUserData.name,
           email: fullUserData.email
@@ -59,14 +53,22 @@ export default class UserController {
   }
   public async updateUser(user: IUser, newUser: IUser) {
     try {
-      let updateUser = await User.findByPk(user._id);
+      let updateUser = await User.update(user, {
+        where: {
+          id: user._id
+        }
+      });
       return updateUser;
     } catch (error) {
       console.log(error);
     }
   }
   public async deleteUser(_id) {
-    let userDeleted = await User.findByPk(_id);
+    let userDeleted = await User.destroy({
+      where: {
+        id: _id
+      }
+    });
     return { mensage: `Usuário ${userDeleted} deletado`, status: 'Success' };
   }
 }

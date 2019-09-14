@@ -1,11 +1,11 @@
-// import playerModel from '../models/player';
+import { Player } from '../models/player';
 import playerInventorie from './inventorieControler';
 import userController from './usersController';
 import { IPlayer } from '../@types/IPlayer';
 import { IUser } from '../@types/IUser';
 
 export default class PlayerController {
-  private playerModel = playerModel;
+  private playerModel = Player;
   private playerInventorie = new playerInventorie('playerInventorie');
   private userController = new userController();
 

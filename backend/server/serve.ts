@@ -12,7 +12,7 @@ class Server {
   }
 
   private dataBase() {
-    sequelize.authenticate();
+    sequelize.sync();
   }
   private midllewere() {
     this.express.use(bodyParser.urlencoded({ extended: true }));

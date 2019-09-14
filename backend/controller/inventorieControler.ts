@@ -1,11 +1,15 @@
-// import InventorieSchema from '../models/inventories';
 import { IInventorie } from '../@types/IInventorie';
-import { Model, Document, model } from 'mongoose';
+import { InventoriePlayer } from '../models/InventoriePlayer';
+import { InventorieRoom } from '../models/InventorieRoom';
 
 export default class InventorieController {
-  private inventorieModel: Model<Document, {}>;
+  private inventorieModel = InventorieRoom;
   constructor(modelName: string) {
-    this.inventorieModel = model(modelName, InventorieSchema);
+    if (modelName == 'room') {
+      this.inventorieModel = InventorieRoom;
+    } else {
+      this.inventorieModel = InventoriePlayer;
+    }
   }
   public async createInventorie(IInventorie?: IInventorie) {
     let inventorieBuild: IInventorie = {
@@ -16,15 +20,23 @@ export default class InventorieController {
     return InventorieResult;
   }
   public async updateInventorie(_id, Inventorie) {
-    const update = await this.inventorieModel.findByIdAndUpdate(_id, { ...Inventorie });
+    const update = await this.inventorieModel.update(Inventorie, {
+      where: {
+        id: _id
+      }
+    });
     return update;
   }
   public async findInventorie(_id) {
-    const findResult = await this.inventorieModel.findById(_id);
+    const findResult = await this.inventorieModel.findByPk(_id);
     return findResult;
   }
   public async deleteInventorie(_id) {
-    const deleteResult = await this.inventorieModel.findByIdAndDelete(_id);
+    const deleteResult = await this.inventorieModel.destroy({
+      where: {
+        id: _id
+      }
+    });
     return deleteResult;
   }
 }

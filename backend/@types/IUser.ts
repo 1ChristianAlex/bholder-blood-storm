@@ -1,14 +1,17 @@
 export interface IUser {
   _id?: string;
   name: string;
+  description?: string;
   userName: string;
-  pass?: string;
   email: string;
-  createDate?: string;
+  password?: string;
   guild?: string;
-  rank?: string;
-  playerRef?: string[];
-  masterRef?: string[];
+  elo?: string;
+  enable?: string;
+  Player_id?: string;
+  Master_id?: string;
+  Map_RPG_id?: string;
+  Items_id?: string;
 }
 
 export interface IUserToken {
@@ -16,6 +19,6 @@ export interface IUserToken {
 }
 export interface ILogin {
   userName: string;
-  pass: string;
+  password: string;
   email: string;
 }

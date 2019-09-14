@@ -1,6 +1,6 @@
 interface ILife {
-  current: string;
-  max: string;
+  current_life: string;
+  life: string;
 }
 interface IAttribute {
   atributeName: {
@@ -10,26 +10,19 @@ interface IAttribute {
     type: any;
   };
 }
-interface IAbiliity {
-  abiliityName: string;
-  abiliityValue: any;
-}
+
 export interface IPlayer {
-  playerName: string;
-  class: string;
-  breed: string;
-  level: string;
-  life: ILife;
-  atribute: IAttribute;
-  abiliity: IAbiliity;
-  alignment: string;
-  background: string;
-  experience_points: number;
-  inspiration: number;
-  proficiency_bonus: number;
-  travel_speed: number;
-  initiative: number;
-  playerImage: string;
-  inventorie_ref: string;
-  accessLevel: string;
+  name?: string;
+  description?: string;
+  level?: number;
+  breed?: string;
+  class?: string;
+  life?: ILife;
+  attributes?: string;
+  expertise?: string;
+  alignment?: string;
+  background?: string;
+  icon_image?: string;
+  p_access?: string;
+  inventorie_id: number;
 }
