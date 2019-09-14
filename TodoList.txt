@@ -1,11 +1,1 @@
-User crud logic V
-User token validation V
-
-Postagens 
-
-Regras
-
-Criação de personagem
-
-Salas
-
+Adicionar a coluna 'categorie' no diagrama de items e excluir o a tabela 'categorie'
