@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { BRegister } from './styled';
 import { MdArrowForward } from 'react-icons/md';
+import { UserRequest } from '../../lib/User';
 
 export class RegisterC extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
-      username: '',
+      userName: '',
       email: '',
       password: '',
       passwordC: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.register = this.register.bind(this);
   }
   render() {
     return (
@@ -28,8 +30,8 @@ export class RegisterC extends Component {
               <BRegister.group controlId="name">
                 <BRegister.input type="text" placeholder="Nome *" name="name" onChange={this.handleChange} required />
               </BRegister.group>
-              <BRegister.group controlId="username">
-                <BRegister.input type="text" placeholder="Nome de usuário *" name="username" onChange={this.handleChange} required />
+              <BRegister.group controlId="userName">
+                <BRegister.input type="text" placeholder="Nome de usuário *" name="userName" onChange={this.handleChange} required />
               </BRegister.group>
               <BRegister.group controlId="email">
                 <BRegister.input type="email" placeholder="E-mail *" name="email" onChange={this.handleChange} required />
@@ -66,9 +68,11 @@ export class RegisterC extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    if (this.state.password !== this.state.passwordC) {
-      alert('Senhas não compativeis');
-      return false;
-    }
+    this.register(this.state);
+  }
+  async register(user) {
+    const userRequest = new UserRequest();
+
+    userRequest.register(user);
   }
 }

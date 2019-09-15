@@ -34,7 +34,6 @@ export const BRegister = {
   group: styled(Form.Group)``,
   input: styled(Form.Control)`
     margin-bottom: 15px;
-    border-bottom: 1px solid ${props => (props.validate ? '#262525' : 'red')};
     border-radius: 0;
   `,
   button: styled(Button)`
