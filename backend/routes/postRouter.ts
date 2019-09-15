@@ -6,28 +6,27 @@ export default class PostRouter {
 
   public async createPostRouter(req: Request, res: Response, next: NextFunction) {
     let { post, user } = req.body;
-    console.log(user);
-    let postResult = await this.postC.createPost(post, user._id);
-
+    let postResult = await this.postC.createPost(post, user.id);
     res.json(postResult);
     next();
   }
   public async listPostRouter(req: Request, res: Response, next: NextFunction) {
     let { limit } = req.body;
     let postResult = await this.postC.listPost(limit);
-    res.json(postResult);
+    res.status(postResult.status).json(postResult.content);
     next();
   }
   public async updatePostRouter(req: Request, res: Response, next: NextFunction) {
-    let { _id, post } = req.body.post;
-    let postResult = await this.postC.updatePost(_id, post);
+    let { id, post } = req.body.post;
+    let postResult = await this.postC.updatePost(id, post);
     res.json(postResult);
     next();
   }
   public async deletePostRouter(req: Request, res: Response, next: NextFunction) {
-    let { _id } = req.body.post;
-    let postResult = await this.postC.deletePost(_id);
-    res.json(postResult);
+    let id = req.params.id;
+    let postResult = await this.postC.deletePost(id);
+    res.status(postResult.status).json(postResult);
+    next();
     next();
   }
 }

@@ -5,7 +5,7 @@ export class Master extends Model {}
 
 Master.init(
   {
-    // inventorie_room_id: {
+    // inventorie_roomid: {
     //   type: DataTypes.INTEGER,
     //   references: {
     //     model: InventorieRoom,
@@ -17,7 +17,7 @@ Master.init(
       type: DataTypes.STRING,
       defaultValue: '3'
     }
-    // inventorie_id: {
+    // inventorieid: {
     //   allowNull: true,
     //   type: DataTypes.INTEGER,
     //   references: {

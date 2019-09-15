@@ -25,19 +25,20 @@ export default class UserController {
   }
   public async login(user: ILogin) {
     try {
-      let { userName, password, email } = user;
+      console.log(user);
+      let { userName, password } = user;
       let cryptPass = await this.Crypt(password);
       let userLogin = await User.findOne({
         where: {
           userName: userName,
           password: cryptPass
         }
-      }).toJSON();
+      });
+
       if (userLogin !== null) {
-        let fullUserData: any = userLogin;
+        let fullUserData: any = userLogin.toJSON();
         let myUser: IUser = {
-          _id: fullUserData.id,
-          userName: fullUserData.userName,
+          id: fullUserData.id,
           name: fullUserData.name,
           email: fullUserData.email
         };
@@ -53,9 +54,9 @@ export default class UserController {
   }
   public async updateUser(user: IUser, newUser: IUser) {
     try {
-      let updateUser = await User.update(user, {
+      let updateUser = await User.update(newUser, {
         where: {
-          id: user._id
+          id: user.id
         }
       });
       return updateUser;
@@ -63,12 +64,15 @@ export default class UserController {
       console.log(error);
     }
   }
-  public async deleteUser(_id) {
+  public async deleteUser(id) {
     let userDeleted = await User.destroy({
       where: {
-        id: _id
+        id: id
       }
     });
-    return { mensage: `Usuário ${userDeleted} deletado`, status: 'Success' };
+    if (userDeleted == 0) {
+      return { mensage: `Not Found`, status: 404 };
+    }
+    return { mensage: `Success`, status: 200 };
   }
 }

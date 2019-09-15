@@ -8,7 +8,7 @@ class WebToken {
   private SECRET = SECRET;
 
   async createToken(user: IUser) {
-    delete user.pass;
+    delete user.password;
     let userToken = {
       ...user
     };

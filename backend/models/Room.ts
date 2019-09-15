@@ -20,21 +20,21 @@ Room.init(
       type: DataTypes.BOOLEAN,
       defaultValue: true
     }
-    //   player_id: {
+    //   playerid: {
     //     type: DataTypes.INTEGER,
     //     references: {
     //       model: Player,
     //       key: 'id'
     //     }
     //   },
-    //   master_id: {
+    //   masterid: {
     //     type: DataTypes.INTEGER,
     //     references: {
     //       model: Master,
     //       key: 'id'
     //     }
     //   },
-    //   map_id: {
+    //   mapid: {
     //     type: DataTypes.INTEGER,
     //     references: {
     //       model: Map_RPG,

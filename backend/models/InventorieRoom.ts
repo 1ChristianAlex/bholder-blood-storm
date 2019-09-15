@@ -9,7 +9,7 @@ InventorieRoom.init(
       type: DataTypes.INTEGER
     }
 
-    // item_id: {
+    // itemid: {
     //   type: DataTypes.INTEGER,
     //   references: {
     //     model: 'items',

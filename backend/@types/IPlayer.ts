@@ -12,6 +12,7 @@ interface IAttribute {
 }
 
 export interface IPlayer {
+  id?: number;
   name?: string;
   description?: string;
   level?: number;
@@ -24,5 +25,5 @@ export interface IPlayer {
   background?: string;
   icon_image?: string;
   p_access?: string;
-  inventorie_id: number;
+  inventoriePlayerId?: number;
 }

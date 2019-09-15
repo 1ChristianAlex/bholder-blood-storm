@@ -11,7 +11,7 @@ InventoriePlayer.init(
     max_weight: {
       type: DataTypes.STRING
     }
-    // item_id: {
+    // itemid: {
     //   type: DataTypes.INTEGER,
     //   references: {
     //     model: 'items',

@@ -1,8 +1,8 @@
 export interface IPost {
-  categorie: String;
-  title: String;
-  subtitle: String;
-  thumb: String;
+  categorie: string;
+  title: string;
+  subtitle: string;
+  thumb: string;
   content: Array<string>;
-  userRef: string;
+  userId: number;
 }

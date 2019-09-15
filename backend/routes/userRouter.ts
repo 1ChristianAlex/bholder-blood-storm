@@ -17,7 +17,7 @@ export default class UserRouter {
       if (userResult !== null) {
         res.json({ mensage: 'User created sucess', userResult: userResult });
       } else {
-        res.json({ mensage: 'Erro on user creation' });
+        res.status(404).json({ mensage: 'Erro on user creation' });
       }
       next();
     } catch (error) {
@@ -49,7 +49,7 @@ export default class UserRouter {
   public async routeDeleteUser(req: Request, res: Response, next: NextFunction) {
     let userId = req.params.id;
     let result = await this.UserC.deleteUser(userId);
-    res.json(result);
+    res.status(result.status).json(result);
     next();
   }
 }

@@ -1,6 +1,7 @@
 export interface IInventorie {
-  _id: string;
+  id?: string;
   max_weight?: number;
   current_weight?: number;
-  items_id?: string;
+  itemsid?: string;
+  quantity?: number;
 }

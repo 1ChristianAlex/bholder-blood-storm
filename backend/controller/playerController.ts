@@ -1,57 +1,65 @@
 import { Player } from '../models/player';
-import playerInventorie from './inventorieControler';
-import userController from './usersController';
+import { User } from '../models/user';
+import { InventorieController } from './inventorieControler';
 import { IPlayer } from '../@types/IPlayer';
 import { IUser } from '../@types/IUser';
+import { IInventorie } from '../@types/IInventorie';
 
 export default class PlayerController {
-  private playerModel = Player;
-  private playerInventorie = new playerInventorie('playerInventorie');
-  private userController = new userController();
+  private inventorie = new InventorieController('player');
 
   public async createPlayer(player: IPlayer, user: IUser) {
-    const inventorie = await this.playerInventorie.createInventorie();
+    const inventorie = await this.inventorie.createInventorie();
+    let inventoriePlayerId: IInventorie = inventorie.toJSON();
     let playerBuild: IPlayer = {
       ...player,
-      inventorie_ref: inventorie._id
+      inventoriePlayerId: parseInt(inventoriePlayerId.id)
     };
-    const playerCreating = await this.playerModel.create(playerBuild);
+    const playerCreating = await Player.create(playerBuild);
 
-    let playerRef = user.playerRef;
-    if (playerRef == undefined) {
-      playerRef = [];
+    let myPlayer: IPlayer = playerCreating.toJSON();
+
+    User.update(
+      { playerId: myPlayer.id },
+      {
+        where: {
+          id: user.id
+        }
+      }
+    );
+
+    return myPlayer;
+  }
+  public async updatePlayer(player: IPlayer, newPlayer: IPlayer) {
+    try {
+      let updatePlayer = await User.update(newPlayer, {
+        where: {
+          id: player.id
+        }
+      });
+      return updatePlayer;
+    } catch (error) {
+      console.log(error);
     }
-    playerRef.push(playerCreating.id);
-    let userInventorie: IUser = {
-      ...user,
-      playerRef
-    };
-    this.userController.updateUser(user, userInventorie);
-
-    return playerCreating;
-  }
-  public async findPlayer(_id) {
-    let player: any = await this.playerModel.findById(_id);
-    let playerInventorie = await this.playerInventorie.findInventorie(player.inventorie_ref);
-    let playerFind = {
-      player,
-      playerInventorie
-    };
-    console.log(playerFind);
-    return playerFind;
-  }
-  public async updatePlayer(_id, player: IPlayer) {
-    await this.playerModel.findOneAndUpdate({ _id }, player);
-    return { mensage: `Player update` };
   }
 
-  public async deletePlayer(_id: string, user: IUser) {
-    const playerResult = await this.playerModel.findByIdAndDelete({ _id });
-    this.userController.updateUser(user, {
-      ...user,
-      playerRef: user.playerRef.filter(playID => playID != _id)
+  public async deletePlayer(id, user: IUser) {
+    const deleteResult = await Player.destroy({
+      where: {
+        id: id
+      }
     });
-
-    return { mensage: `Player ${playerResult._id} deleted` };
+    User.update(
+      { playerId: id },
+      {
+        where: {
+          id: user.id
+        }
+      }
+    );
+    if (deleteResult == 0) {
+      return { mensage: `Not Found`, status: 404 };
+    }
+    return { mensage: `Success`, status: 200 };
   }
 }

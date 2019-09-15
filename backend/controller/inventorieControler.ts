@@ -2,7 +2,7 @@ import { IInventorie } from '../@types/IInventorie';
 import { InventoriePlayer } from '../models/InventoriePlayer';
 import { InventorieRoom } from '../models/InventorieRoom';
 
-export default class InventorieController {
+export class InventorieController {
   private inventorieModel = InventorieRoom;
   constructor(modelName: string) {
     if (modelName == 'room') {
@@ -11,9 +11,9 @@ export default class InventorieController {
       this.inventorieModel = InventoriePlayer;
     }
   }
-  public async createInventorie(IInventorie?: IInventorie) {
+  public async createInventorie(Inventorie?: IInventorie) {
     let inventorieBuild: IInventorie = {
-      ...IInventorie,
+      ...Inventorie,
       current_weight: 0
     };
     const InventorieResult = await this.inventorieModel.create(inventorieBuild);
