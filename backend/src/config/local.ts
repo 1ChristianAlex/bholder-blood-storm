@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 
-config({ path: 'config/.env' });
+config({ path: 'src/config/.env' });
 
 const envolvriment = {
   MONGOPORT: process.env.DB_PORT,

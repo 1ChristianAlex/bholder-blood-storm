@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import env from '../config/local';
+import env from '../../config/local';
 const cryptfy = pass => {
   {
     try {

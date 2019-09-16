@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import envolvriment from '../config/local';
+import envolvriment from '../../config/local';
 import { IUser } from '../@types/IUser';
 const { SECRET } = envolvriment;
 

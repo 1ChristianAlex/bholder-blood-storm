@@ -1,5 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
-import { sequelize } from '../config/database';
+import { sequelize } from '../../config/database';
 
 export class Map_RPG extends Model {}
 Map_RPG.init(

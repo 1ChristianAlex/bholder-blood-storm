@@ -1,5 +1,5 @@
-import app from './server/serve';
-import envolvriment from './config/local';
+import app from './src/server/serve';
+import envolvriment from './src/config/local';
 
 const { BACK_END_PORT, HOSTNAME } = envolvriment;
 

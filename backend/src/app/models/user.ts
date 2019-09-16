@@ -1,5 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
-import { sequelize } from '../config/database';
+import { sequelize } from '../../config/database';
 import { Map_RPG } from './map_rpg';
 import { Player } from './player';
 import { Master } from './master';

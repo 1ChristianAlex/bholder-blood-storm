@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import Routes from './router';
 import cors from 'cors';
-import jwtMiddleware from '../routes/jwtMiddleware';
+import jwtMiddleware from '../app/routes/jwtMiddleware';
 import { sequelize } from '../config/database';
 
 class Server {
