@@ -8,14 +8,6 @@ InventorieRoom.init(
     quantity: {
       type: DataTypes.INTEGER
     }
-
-    // itemid: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: 'items',
-    //     key: 'id'
-    //   }
-    // }
   },
   {
     sequelize,

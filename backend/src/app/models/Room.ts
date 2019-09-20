@@ -20,27 +20,6 @@ Room.init(
       type: DataTypes.BOOLEAN,
       defaultValue: true
     }
-    //   playerid: {
-    //     type: DataTypes.INTEGER,
-    //     references: {
-    //       model: Player,
-    //       key: 'id'
-    //     }
-    //   },
-    //   masterid: {
-    //     type: DataTypes.INTEGER,
-    //     references: {
-    //       model: Master,
-    //       key: 'id'
-    //     }
-    //   },
-    //   mapid: {
-    //     type: DataTypes.INTEGER,
-    //     references: {
-    //       model: Map_RPG,
-    //       key: 'id'
-    //     }
-    //   }
   },
   {
     sequelize,

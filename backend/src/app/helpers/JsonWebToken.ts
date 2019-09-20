@@ -1,25 +1,28 @@
-import jwt from 'jsonwebtoken';
+import JsonImport from 'jsonwebtoken';
 import envolvriment from '../../config/local';
-import { IUser } from '../@types/IUser';
+import { IUser } from '../interfaces/IUser';
 const { SECRET } = envolvriment;
 
 class WebToken {
-  private jwt = jwt;
+  private JsonWebToken = JsonImport;
   private SECRET = SECRET;
 
-  async createToken(user: IUser) {
+  async CreateToken(user: IUser) {
     delete user.password;
+
     let userToken = {
       ...user
     };
-    let token = this.jwt.sign({ ...userToken }, Buffer.from(this.SECRET).toString('hex'), {
+    let token = this.JsonWebToken.sign({ ...userToken }, Buffer.from(this.SECRET).toString('hex'), {
       expiresIn: 3000
     });
+
     return token;
   }
-  async verifyToken(token) {
+  async Verify(token) {
     try {
-      let tokenV = this.jwt.verify(token, Buffer.from(this.SECRET).toString('hex'));
+      let tokenV = this.JsonWebToken.verify(token, Buffer.from(this.SECRET).toString('hex'));
+
       return tokenV;
     } catch (error) {
       return null;

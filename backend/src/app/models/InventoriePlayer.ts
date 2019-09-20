@@ -11,13 +11,6 @@ InventoriePlayer.init(
     max_weight: {
       type: DataTypes.STRING
     }
-    // itemid: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: 'items',
-    //     key: 'id'
-    //   }
-    // }
   },
   {
     sequelize,

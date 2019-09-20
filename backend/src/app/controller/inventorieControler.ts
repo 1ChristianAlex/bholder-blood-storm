@@ -1,15 +1,11 @@
-import { IInventorie } from '../@types/IInventorie';
+import { IInventorie } from '../interfaces/IInventorie';
 import { InventoriePlayer } from '../models/InventoriePlayer';
 import { InventorieRoom } from '../models/InventorieRoom';
 
 export class InventorieController {
   private inventorieModel = InventorieRoom;
   constructor(modelName: string) {
-    if (modelName == 'room') {
-      this.inventorieModel = InventorieRoom;
-    } else {
-      this.inventorieModel = InventoriePlayer;
-    }
+    modelName == 'room' ? (this.inventorieModel = InventorieRoom) : (this.inventorieModel = InventoriePlayer);
   }
   public async createInventorie(Inventorie?: IInventorie) {
     let inventorieBuild: IInventorie = {

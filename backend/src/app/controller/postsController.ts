@@ -1,21 +1,22 @@
 import { Post } from '../models/post';
 import { User } from '../models/user';
-import { IPost } from '../@types/IPost';
+import { IPost } from '../interfaces/IPost';
 
 class PostController {
-  private postM = Post;
+  private PostModel = Post;
 
-  public async createPost(post: IPost, id: string) {
+  public async CreatePost(post: IPost, id: string) {
     let postComplete: IPost = {
       ...post,
       userId: parseInt(id)
     };
 
-    const postResult = await this.postM.create(postComplete);
+    const postResult = await this.PostModel.create(postComplete);
+
     return postResult;
   }
   public async listPost(limit = 10) {
-    const listPost = await this.postM.findAll({
+    const listPost = await this.PostModel.findAll({
       limit,
       include: [
         {
@@ -24,25 +25,29 @@ class PostController {
         }
       ]
     });
+
     if (listPost.length == 0) {
       return { status: 404, content: 'not found' };
     }
+
     return { status: 202, content: listPost };
   }
-  public async updatePost(id, post) {
-    const update = await this.postM.update(post, {
+  public async UpdatePost(id, post) {
+    const update = await this.PostModel.update(post, {
       where: {
         id: id
       }
     });
+
     return update;
   }
   public async deletePost(id) {
-    const deleteResult = await this.postM.destroy({
+    const deleteResult = await this.PostModel.destroy({
       where: {
         id: id
       }
     });
+
     if (deleteResult == 0) {
       return { mensage: `Not Found`, status: 404 };
     }

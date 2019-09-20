@@ -1,16 +1,18 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from '../helpers/JsonWebToken';
+import JsonWebToken from '../helpers/JsonWebToken';
 
 const jwtMiddleware = async (req: Request, res: Response, next: NextFunction) => {
-  let jwToken = req.headers['bholder-access-token'];
-  let body = req.body;
-  let isAuth = await jwt.verifyToken(jwToken);
+  let jwTokenReponse = req.headers['bholder-access-token'];
+  let bodyResponse = req.body;
+
+  let isAuth = await JsonWebToken.Verify(jwTokenReponse);
+
   if (isAuth == null) {
     res.status(401).json({ mensage: 'Invalid token, please loged again' });
   } else {
     req.body = {
       user: isAuth,
-      ...body
+      ...bodyResponse
     };
     next();
   }

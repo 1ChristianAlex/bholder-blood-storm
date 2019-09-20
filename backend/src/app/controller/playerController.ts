@@ -1,20 +1,22 @@
 import { Player } from '../models/player';
 import { User } from '../models/user';
 import { InventorieController } from './inventorieControler';
-import { IPlayer } from '../@types/IPlayer';
-import { IUser } from '../@types/IUser';
-import { IInventorie } from '../@types/IInventorie';
+import { IPlayer } from '../interfaces/IPlayer';
+import { IUser } from '../interfaces/IUser';
+import { IInventorie } from '../interfaces/IInventorie';
 
 export default class PlayerController {
-  private inventorie = new InventorieController('player');
+  private InventoriePlayer = new InventorieController('player');
 
   public async createPlayer(player: IPlayer, user: IUser) {
-    const inventorie = await this.inventorie.createInventorie();
+    const inventorie = await this.InventoriePlayer.createInventorie();
     let inventoriePlayerId: IInventorie = inventorie.toJSON();
+
     let playerBuild: IPlayer = {
       ...player,
       inventoriePlayerId: parseInt(inventoriePlayerId.id)
     };
+
     const playerCreating = await Player.create(playerBuild);
 
     let myPlayer: IPlayer = playerCreating.toJSON();
@@ -30,7 +32,7 @@ export default class PlayerController {
 
     return myPlayer;
   }
-  public async updatePlayer(player: IPlayer, newPlayer: IPlayer) {
+  public async UpdatePlayer(player: IPlayer, newPlayer: IPlayer) {
     try {
       let updatePlayer = await User.update(newPlayer, {
         where: {
