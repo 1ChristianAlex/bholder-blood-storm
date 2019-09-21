@@ -3,32 +3,34 @@ import { InventoriePlayer } from '../models/InventoriePlayer';
 import { InventorieRoom } from '../models/InventorieRoom';
 
 export class InventorieController {
-  private inventorieModel = InventorieRoom;
+  private InventorieModel = InventorieRoom;
+
   constructor(modelName: string) {
-    modelName == 'room' ? (this.inventorieModel = InventorieRoom) : (this.inventorieModel = InventoriePlayer);
+    modelName == 'room' ? (this.InventorieModel = InventorieRoom) : (this.InventorieModel = InventoriePlayer);
   }
-  public async createInventorie(Inventorie?: IInventorie) {
+
+  public async CreateInventorie(Inventorie?: IInventorie) {
     let inventorieBuild: IInventorie = {
       ...Inventorie,
       current_weight: 0
     };
-    const InventorieResult = await this.inventorieModel.create(inventorieBuild);
+    const InventorieResult = await this.InventorieModel.create(inventorieBuild);
     return InventorieResult;
   }
-  public async updateInventorie(_id, Inventorie) {
-    const update = await this.inventorieModel.update(Inventorie, {
+  public async UpdateInventorie(_id, Inventorie) {
+    const update = await this.InventorieModel.update(Inventorie, {
       where: {
         id: _id
       }
     });
     return update;
   }
-  public async findInventorie(_id) {
-    const findResult = await this.inventorieModel.findByPk(_id);
+  public async FingInventorie(_id) {
+    const findResult = await this.InventorieModel.findByPk(_id);
     return findResult;
   }
-  public async deleteInventorie(_id) {
-    const deleteResult = await this.inventorieModel.destroy({
+  public async DeleteInventorie(_id) {
+    const deleteResult = await this.InventorieModel.destroy({
       where: {
         id: _id
       }

@@ -15,8 +15,8 @@ export class Header extends Component {
       menuOpen: true
     };
 
-    this.toggleDropdown = this.toggleDropdown.bind(this);
-    this.toggleMobile = this.toggleMobile.bind(this);
+    this.ToggleDropdown = this.ToggleDropdown.bind(this);
+    this.ToggleMobile = this.ToggleMobile.bind(this);
   }
   render() {
     return (
@@ -41,7 +41,7 @@ export class Header extends Component {
                 <UserAcess.container>
                   <UserAcess.link to="/login">Login</UserAcess.link>
                   <UserAcess.link to="/register">Registrar</UserAcess.link>
-                  <BNav.toggleMenu onClick={this.toggleMobile}>
+                  <BNav.toggleMenu onClick={this.ToggleMobile}>
                     <MdMenu />
                   </BNav.toggleMenu>
                 </UserAcess.container>
@@ -56,10 +56,10 @@ export class Header extends Component {
                 {[].map.call([...this.state.menuItem], (item, i) => {
                   return (
                     <BNav.item key={i}>
-                      <BNav.dropTitle href="#" data-drop={i} onClick={e => this.toggleDropdown(i, e)}>
+                      <BNav.dropTitle href="#" data-drop={i} onClick={e => this.ToggleDropdown(i, e)}>
                         {item} <MdArrowDropDown />
                       </BNav.dropTitle>
-                      <BNav.dropdown isOpen={this.state.menuOpen} data-dropdown={i} data-toggle="close" onMouseLeave={e => this.toggleDropdown(i, e)}>
+                      <BNav.dropdown isOpen={this.state.menuOpen} data-dropdown={i} data-toggle="close" onMouseLeave={e => this.ToggleDropdown(i, e)}>
                         <BNav.dropItem>
                           <BNav.link to="/">Teste</BNav.link>
                         </BNav.dropItem>
@@ -80,7 +80,7 @@ export class Header extends Component {
       </BHeader.header>
     );
   }
-  toggleDropdown(index, e) {
+  ToggleDropdown(index, e) {
     let dropdown = document.querySelector(`[data-dropdown="${index}"]`);
     if (dropdown.dataset.toggle == 'close') {
       dropdown.style.display = 'block';
@@ -91,7 +91,7 @@ export class Header extends Component {
     }
     e.preventDefault();
   }
-  toggleMobile() {
+  ToggleMobile() {
     this.setState({
       menuOpen: !this.state.menuOpen
     });

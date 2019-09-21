@@ -9,27 +9,33 @@ export class UserRequest {
     }
   });
 
-  async register(user) {
-    let vUser = this.validateRegister(user);
+  async RegisterUser(user) {
+    let vUser = this.ValidateRegisterValues(user);
+
     console.log(vUser);
-    let newUserRequest = await this.userAxios.post('/register', {
+
+    let userCreating = await this.userAxios.post('/register', {
       ...vUser
     });
-    console.log(newUserRequest);
-    if (newUserRequest.status == 200) {
-      this.login(vUser);
+
+    console.log(userCreating);
+    if (userCreating.status === 200) {
+      this.Login(vUser);
     }
   }
-  async login(user) {
-    let login = this.validadeLogin(user);
+  async Login(user) {
+    let login = this.ValidadeLogin(user);
+
     console.log(login);
+
     let loginRequest = await this.userAxios.post('/login', {
       ...login
     });
+
     localStorage.setItem('BHOLDER_ACCESS', loginRequest.data.token);
     console.log(loginRequest);
   }
-  validadeLogin(user) {
+  ValidadeLogin(user) {
     let userValidede = {};
 
     if (user.userName.length > 4 && RegexRPG.valUserName(user.userName)) {
@@ -39,7 +45,7 @@ export class UserRequest {
     }
     return userValidede;
   }
-  validateRegister(user) {
+  ValidateRegisterValues(user) {
     let userValidede = {};
 
     if (user.name.length > 7 && RegexRPG.onlyText(user.name)) {
@@ -51,7 +57,7 @@ export class UserRequest {
     if (RegexRPG.valEmail(user.email)) {
       userValidede.email = user.email;
     }
-    if (user.password == user.passwordC) {
+    if (user.password === user.passwordC) {
       userValidede.password = user.password;
     }
     console.log(user);

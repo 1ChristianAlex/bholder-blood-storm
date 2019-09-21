@@ -8,8 +8,8 @@ import { IInventorie } from '../interfaces/IInventorie';
 export default class PlayerController {
   private InventoriePlayer = new InventorieController('player');
 
-  public async createPlayer(player: IPlayer, user: IUser) {
-    const inventorie = await this.InventoriePlayer.createInventorie();
+  public async CreatePlayer(player: IPlayer, user: IUser) {
+    const inventorie = await this.InventoriePlayer.CreateInventorie();
     let inventoriePlayerId: IInventorie = inventorie.toJSON();
 
     let playerBuild: IPlayer = {
@@ -32,6 +32,18 @@ export default class PlayerController {
 
     return myPlayer;
   }
+  public async GetPLayer(id?: string) {
+    try {
+      let playerQuery = await User.findAll({
+        where: {
+          id
+        }
+      });
+      return playerQuery;
+    } catch (error) {
+      console.log(error);
+    }
+  }
   public async UpdatePlayer(player: IPlayer, newPlayer: IPlayer) {
     try {
       let updatePlayer = await User.update(newPlayer, {
@@ -45,7 +57,7 @@ export default class PlayerController {
     }
   }
 
-  public async deletePlayer(id, user: IUser) {
+  public async DeletePlayer(id, user: IUser) {
     const deleteResult = await Player.destroy({
       where: {
         id: id

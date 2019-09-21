@@ -13,8 +13,8 @@ export class RegisterC extends Component {
       password: '',
       passwordC: ''
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.HandleSubmit = this.HandleSubmit.bind(this);
+    this.HandleChange = this.HandleChange.bind(this);
     this.register = this.register.bind(this);
   }
   render() {
@@ -26,27 +26,27 @@ export class RegisterC extends Component {
               <BRegister.h1>Criar uma Conta</BRegister.h1>
             </BRegister.title>
             <BRegister.forgot to="/login">ou faça o Login caso já passou uma conta.</BRegister.forgot>
-            <BRegister.form onSubmit={this.handleSubmit}>
+            <BRegister.form onSubmit={this.HandleSubmit}>
               <BRegister.group controlId="name">
-                <BRegister.input type="text" placeholder="Nome *" name="name" onChange={this.handleChange} required />
+                <BRegister.input type="text" placeholder="Nome *" name="name" onChange={this.HandleChange} required />
               </BRegister.group>
               <BRegister.group controlId="userName">
-                <BRegister.input type="text" placeholder="Nome de usuário *" name="userName" onChange={this.handleChange} required />
+                <BRegister.input type="text" placeholder="Nome de usuário *" name="userName" onChange={this.HandleChange} required />
               </BRegister.group>
               <BRegister.group controlId="email">
-                <BRegister.input type="email" placeholder="E-mail *" name="email" onChange={this.handleChange} required />
+                <BRegister.input type="email" placeholder="E-mail *" name="email" onChange={this.HandleChange} required />
               </BRegister.group>
               <BRegister.group controlId="password">
-                <BRegister.input type="password" placeholder="Senha *" name="password" onChange={this.handleChange} required />
+                <BRegister.input type="password" placeholder="Senha *" name="password" onChange={this.HandleChange} required />
               </BRegister.group>
               <BRegister.group controlId="passwordC">
-                <BRegister.input type="password" placeholder="Confirme senha *" name="passwordC" onChange={this.handleChange} required />
+                <BRegister.input type="password" placeholder="Confirme senha *" name="passwordC" onChange={this.HandleChange} required />
               </BRegister.group>
               <BRegister.group controlId="terms-sign">
                 <BRegister.remeberL type="checkbox" label="Li e aceito os termos de uso do usuário" />
               </BRegister.group>
               <BRegister.group controlId="button-sign">
-                <BRegister.button type="submit" onSubmit={this.handleSubmit}>
+                <BRegister.button type="submit" onSubmit={this.HandleSubmit}>
                   Login <MdArrowForward />
                 </BRegister.button>
               </BRegister.group>
@@ -56,7 +56,7 @@ export class RegisterC extends Component {
       </>
     );
   }
-  handleChange(e) {
+  HandleChange(e) {
     let input_name = e.currentTarget.name;
     let currentValue = e.currentTarget.value;
 
@@ -65,7 +65,7 @@ export class RegisterC extends Component {
     });
     console.log(this.state);
   }
-  handleSubmit(e) {
+  HandleSubmit(e) {
     e.preventDefault();
 
     this.register(this.state);
@@ -73,6 +73,6 @@ export class RegisterC extends Component {
   async register(user) {
     const userRequest = new UserRequest();
 
-    userRequest.register(user);
+    userRequest.RegisterUser(user);
   }
 }

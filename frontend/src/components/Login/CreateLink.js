@@ -12,7 +12,7 @@ export const CreateAcount = () => {
         </BCreate.title>
         <BCreate.imgContainer>
           <BCreate.img src={DracoRange} />
-          <BCreate.link to="/signin">
+          <BCreate.link to="/register">
             Cadastrar <MdNotifications />
           </BCreate.link>
         </BCreate.imgContainer>

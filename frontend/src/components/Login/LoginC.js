@@ -12,9 +12,9 @@ export class LoginC extends Component {
       userName: '',
       password: ''
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.login = this.login.bind(this);
+    this.HandleSubmit = this.HandleSubmit.bind(this);
+    this.HandleChange = this.HandleChange.bind(this);
+    this.Login = this.Login.bind(this);
   }
   render() {
     return (
@@ -24,10 +24,10 @@ export class LoginC extends Component {
             <BLogin.h1>Login</BLogin.h1>
             <BLogin.forgot to="/recovery-pass">Esqueceu a senha?</BLogin.forgot>
           </BLogin.title>
-          <BLogin.form onSubmit={this.handleSubmit}>
+          <BLogin.form onSubmit={this.HandleSubmit}>
             <BLogin.group controlId="input-user-acess">
-              <BLogin.input type="text" placeholder="Nome de usuário *" name="userName" onChange={this.handleChange} required />
-              <BLogin.input type="password" placeholder="Senha *" name="password" onChange={this.handleChange} required />
+              <BLogin.input type="text" placeholder="Nome de usuário *" name="userName" onChange={this.HandleChange} required />
+              <BLogin.input type="password" placeholder="Senha *" name="password" onChange={this.HandleChange} required />
             </BLogin.group>
             <BLogin.group controlId="remeber-me">
               <BLogin.remeberL type="checkbox" label="Lembre-me" />
@@ -43,7 +43,7 @@ export class LoginC extends Component {
       </>
     );
   }
-  handleChange(e) {
+  HandleChange(e) {
     let input_name = e.currentTarget.name;
     let currentValue = e.currentTarget.value;
 
@@ -52,14 +52,14 @@ export class LoginC extends Component {
     });
     console.log(this.state);
   }
-  handleSubmit(e) {
+  HandleSubmit(e) {
     e.preventDefault();
 
-    this.login(this.state);
+    this.Login(this.state);
   }
-  async login(user) {
+  async Login(user) {
     const userRequest = new UserRequest();
 
-    userRequest.login(user);
+    userRequest.Login(user);
   }
 }
