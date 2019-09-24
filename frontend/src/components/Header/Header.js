@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { SET_USER } from '../../redux/actions/userAction';
+
+import { UserRequest } from '../../lib/UserRequeste';
+
 import { Container, Row, Col } from 'react-bootstrap';
 import { BHeader, UserAcess, BNav } from './styled';
 import { SocialHeader } from './socialHeader';
@@ -6,7 +11,7 @@ import { BSearch } from '../Search/form';
 import { MdMenu, MdArrowDropDown } from 'react-icons/md';
 import logo from '../../assets/logo.png';
 
-export class Header extends Component {
+class Header extends Component {
   constructor(props) {
     super(props);
 
@@ -17,7 +22,9 @@ export class Header extends Component {
 
     this.ToggleDropdown = this.ToggleDropdown.bind(this);
     this.ToggleMobile = this.ToggleMobile.bind(this);
+    this.HandleLogoutUser = this.HandleLogoutUser.bind(this);
   }
+  UserRequest = new UserRequest();
   render() {
     return (
       <BHeader.header>
@@ -39,8 +46,20 @@ export class Header extends Component {
               </Col>
               <Col md={3}>
                 <UserAcess.container>
-                  <UserAcess.link to="/login">Login</UserAcess.link>
-                  <UserAcess.link to="/register">Registrar</UserAcess.link>
+                  {this.props.user.name == '' ? (
+                    <>
+                      <UserAcess.link to="/login">Login</UserAcess.link>
+                      <UserAcess.link to="/register">Registrar</UserAcess.link>
+                    </>
+                  ) : (
+                    <UserAcess.logedBox>
+                      <UserAcess.logedLabel>
+                        Bem vindo <UserAcess.logedName to="/profile">{this.props.user.name} </UserAcess.logedName>
+                        || <UserAcess.logout onClick={this.HandleLogoutUser}>Sair </UserAcess.logout>
+                      </UserAcess.logedLabel>
+                    </UserAcess.logedBox>
+                  )}
+
                   <BNav.toggleMenu onClick={this.ToggleMobile}>
                     <MdMenu />
                   </BNav.toggleMenu>
@@ -77,6 +96,7 @@ export class Header extends Component {
             </BNav.Nav>
           </Container>
         </BNav.section>
+        <div>{this.state.user}</div>
       </BHeader.header>
     );
   }
@@ -97,4 +117,15 @@ export class Header extends Component {
     });
     console.log(this.state.menuOpen);
   }
+  async HandleLogoutUser() {
+    this.UserRequest.LogoutAction();
+  }
+  async componentDidMount() {
+    let isLoged = await this.UserRequest.IsLoged();
+    console.log(this.props);
+    isLoged ? this.props.dispatch(SET_USER({ ...isLoged })) : console.log('Not previews loged');
+  }
 }
+const mapStateToProps = data => ({ user: data.user });
+
+export default connect(mapStateToProps)(Header);

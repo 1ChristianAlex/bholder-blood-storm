@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BRegister } from './styled';
 import { MdArrowForward } from 'react-icons/md';
-import { UserRequest } from '../../lib/User';
+import { UserRequest } from '../../lib/UserRequeste';
 
 export class RegisterC extends Component {
   constructor(props) {

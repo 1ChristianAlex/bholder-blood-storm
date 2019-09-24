@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { UserRequest } from '../../lib/User';
+import { UserRequest } from '../../lib/UserRequeste';
 
 import { BLogin, BLoginImage } from './styled';
 import { MdArrowForward } from 'react-icons/md';

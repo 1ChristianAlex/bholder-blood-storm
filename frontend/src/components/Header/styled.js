@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { Image, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 
+const bholder_red = '#a70202';
+
 export const BHeader = {
   header: styled.header`
     width: 100%;
@@ -34,8 +36,22 @@ export const UserAcess = {
     flex: 1;
     text-align: center;
     :hover {
-      color: #a70202;
+      color: ${bholder_red};
     }
+  `,
+  logedLabel: styled.span`
+    color: white;
+  `,
+  logedName: styled(Link)`
+    color: ${bholder_red};
+  `,
+  logedBox: styled.div`
+    text-align: center;
+    width: 100%;
+  `,
+  logout: styled.span`
+    color: ${bholder_red};
+    cursor: pointer;
   `
 };
 export const SocialIcon = {
@@ -49,13 +65,13 @@ export const SocialIcon = {
     font-size: 16pt;
     margin: 15px 0;
     :hover {
-      color: #a70202;
+      color: ${bholder_red};
     }
   `
 };
 export const BNav = {
   section: styled.div`
-    background-color: #a70202;
+    background-color: ${bholder_red};
     @media only screen and (max-width: 991px) {
       position: absolute;
       width: 100%;
@@ -110,7 +126,7 @@ export const BNav = {
   toggleMenu: styled.button`
     display: none;
     @media only screen and (max-width: 991px) {
-      background-color: #a70202;
+      background-color: ${bholder_red};
       border: 1px solid white;
       display: block;
       border-radius: 5px;
@@ -118,9 +134,9 @@ export const BNav = {
       font-size: 13pt;
       :focus {
         background-color: white;
-        border: 1px solid #a70202;
+        border: 1px solid ${bholder_red};
         display: block;
-        color: #a70202;
+        color: ${bholder_red};
       }
     }
   `

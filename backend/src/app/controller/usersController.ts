@@ -48,7 +48,8 @@ export default class UserController {
         let token = await this.jwt.CreateToken(myUser);
 
         return {
-          token
+          token,
+          data: fullUserData
         };
       }
       return userLogin;
