@@ -1,8 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../../config/database';
-import { User } from './user';
+import { User } from './';
 
-export class Post extends Model {}
+export default class Post extends Model {}
 Post.init(
   {
     categorie: {

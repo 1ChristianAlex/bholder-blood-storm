@@ -1,11 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../../config/database';
-import { Map_RPG } from './map_rpg';
-import { Player } from './player';
-import { Master } from './master';
-import { Items } from './Items';
+import { Maps, Player, Master, Items } from './';
 
-export class User extends Model {}
+export default class User extends Model {}
 User.init(
   {
     name: {
@@ -47,5 +44,5 @@ User.init(
 );
 User.belongsTo(Player);
 User.belongsTo(Master);
-User.belongsTo(Map_RPG);
+User.belongsTo(Maps);
 User.belongsTo(Items);

@@ -1,8 +1,8 @@
-import { IUser, IUserToken, ILogin } from '../interfaces/IUser';
-import { User } from '../models/user';
+import { IUser, IUserToken, ILogin } from '../../interfaces/IUser';
+import { User } from '../../models';
 
-import Cryptfy from '../helpers/Crypto';
-import jwt from '../helpers/JsonWebToken';
+import Cryptfy from '../../resources/Crypto';
+import jwt from '../../resources/JsonWebToken';
 
 export default class UserController {
   private Crypt = Cryptfy;

@@ -1,1 +1,23 @@
-Adicionar a coluna 'categorie' no diagrama de items e excluir o a tabela 'categorie'
+Terminar a home;
+Tratar erros de login;
+Criar as páginas para feed e criação de postagens;
+Criar as páginas para feed e criação de personagem;
+Criar sistema de criação de item.
+
+Criar aplicação realtime dentro do backend ultilizando do Socket.IO para conectar todos os membros da sala.
+
+Todos os itens listados devem ser desenvolvidos no front e backend se com suas respectivas necessidades e dependencias
+
+
+Informações uteis:
+
+Front-end:
+    React
+    Redux
+    Styled-components
+
+Back-end:
+    Express
+    Sequelize - ORM para MySql
+    MySql
+    

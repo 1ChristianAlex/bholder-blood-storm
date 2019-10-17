@@ -1,8 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../../config/database';
-import { Player } from './player';
-import { Master } from './master';
-import { Map_RPG } from './map_rpg';
+import { Player, Master, Maps } from './';
 
 export class Room extends Model {}
 Room.init(
@@ -29,4 +27,4 @@ Room.init(
 
 Room.belongsTo(Player);
 Room.belongsTo(Master);
-Room.belongsTo(Map_RPG);
+Room.belongsTo(Maps);

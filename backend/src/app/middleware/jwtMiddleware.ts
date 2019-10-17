@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import JsonWebToken from '../helpers/JsonWebToken';
+import JsonWebToken from '../resources/JsonWebToken';
 
 const jwtMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   let jwTokenReponse = req.headers['bholder-access-token'];

@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import UserRouter from '../app/middleware/userRouter';
-import PostRouter from '../app/middleware/postRouter';
-import PlayerRoutes from '../app/middleware/playerRouter';
+import UserRouter from '../app/routes/User/userRouter';
+import PostRouter from '../app/routes/Posts/postRouter';
+import PlayerRoutes from '../app/routes/Player/playerRouter';
 
 const Routes = Router();
 const userRouter = new UserRouter();

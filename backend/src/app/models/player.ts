@@ -1,8 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../../config/database';
-import { InventoriePlayer } from './InventoriePlayer';
+import { InventoriePlayer } from './';
 
-export class Player extends Model {}
+export default class Player extends Model {}
 
 Player.init(
   {

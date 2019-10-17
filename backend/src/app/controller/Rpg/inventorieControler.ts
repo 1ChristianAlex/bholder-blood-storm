@@ -1,12 +1,16 @@
-import { IInventorie } from '../interfaces/IInventorie';
-import { InventoriePlayer } from '../models/InventoriePlayer';
-import { InventorieRoom } from '../models/InventorieRoom';
+import { IInventorie } from '../../interfaces/IInventorie';
+import { InventoriePlayer, InventorieRoom } from '../../models';
+import { ModelCtor } from 'sequelize/types';
 
 export class InventorieController {
-  private InventorieModel = InventorieRoom;
+  private InventorieModel: ModelCtor<any>;
 
   constructor(modelName: string) {
-    modelName == 'room' ? (this.InventorieModel = InventorieRoom) : (this.InventorieModel = InventoriePlayer);
+    if (modelName == 'room') {
+      this.InventorieModel = InventorieRoom;
+    } else {
+      this.InventorieModel = InventoriePlayer;
+    }
   }
 
   public async CreateInventorie(Inventorie?: IInventorie) {

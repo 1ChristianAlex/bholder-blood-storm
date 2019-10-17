@@ -1,9 +1,8 @@
-import { Player } from '../models/player';
-import { User } from '../models/user';
+import { Player, User } from '../../models';
 import { InventorieController } from './inventorieControler';
-import { IPlayer } from '../interfaces/IPlayer';
-import { IUser } from '../interfaces/IUser';
-import { IInventorie } from '../interfaces/IInventorie';
+import { IPlayer } from '../../interfaces/IPlayer';
+import { IUser } from '../../interfaces/IUser';
+import { IInventorie } from '../../interfaces/IInventorie';
 
 export default class PlayerController {
   private InventoriePlayer = new InventorieController('player');

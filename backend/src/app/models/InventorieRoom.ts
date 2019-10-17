@@ -1,8 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../../config/database';
-import { Items } from './Items';
+import { Items } from './';
 
-export class InventorieRoom extends Model {}
+export default class InventorieRoom extends Model {}
 InventorieRoom.init(
   {
     quantity: {

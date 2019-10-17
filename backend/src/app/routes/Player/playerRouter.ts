@@ -1,4 +1,4 @@
-import PlayerController from '../controller/playerController';
+import PlayerController from '../../controller/Rpg/playerController';
 import { NextFunction, Request, Response } from 'express';
 
 export default class PlayerRoutes {

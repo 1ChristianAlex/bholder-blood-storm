@@ -1,9 +1,8 @@
-import { Post } from '../models/post';
-import { User } from '../models/user';
-import { IPost } from '../interfaces/IPost';
+import { Posts, User } from '../../models';
+import { IPost } from '../../interfaces/IPost';
 
 class PostController {
-  private PostModel = Post;
+  private PostModel = Posts;
 
   public async CreatePost(post: IPost, id: string) {
     let postComplete: IPost = {

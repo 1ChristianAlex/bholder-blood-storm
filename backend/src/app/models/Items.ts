@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../../config/database';
 
-export class Items extends Model {}
+export default class Items extends Model {}
 Items.init(
   {
     name: {

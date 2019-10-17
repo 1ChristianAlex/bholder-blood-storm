@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import PostsController from '../controller/postsController';
-import { IPost } from '../interfaces/IPost';
+import PostsController from '../../controller/Post/postsController';
+import { IPost } from '../../interfaces/IPost';
 export default class PostRouter {
   private postC = PostsController;
 

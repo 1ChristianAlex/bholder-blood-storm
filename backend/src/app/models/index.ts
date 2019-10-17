@@ -1,0 +1,9 @@
+export { default as InventoriePlayer } from './InventoriePlayer';
+export { default as InventorieRoom } from './InventorieRoom';
+export { default as Items } from './Items';
+export { default as Room } from './Room';
+export { default as Maps } from './map_rpg';
+export { default as Master } from './master';
+export { default as Player } from './player';
+export { default as Posts } from './post';
+export { default as User } from './user';

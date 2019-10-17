@@ -1,8 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../../config/database';
-import { Items } from './Items';
+import { Items } from './';
 
-export class InventoriePlayer extends Model {}
+export default class InventoriePlayer extends Model {}
 InventoriePlayer.init(
   {
     current_weight: {

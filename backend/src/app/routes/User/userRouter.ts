@@ -1,6 +1,6 @@
-import { IUser, ILogin } from '../interfaces/IUser';
+import { IUser, ILogin } from '../../interfaces/IUser';
 import { NextFunction, Request, Response } from 'express';
-import UserController from '../controller/usersController';
+import UserController from '../../controller/User/usersController';
 
 export default class UserRouter {
   private UserController: UserController;
